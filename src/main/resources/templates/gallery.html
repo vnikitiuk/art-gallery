@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art of Freedom</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            width: 100%;
+            height: 100%;
+<!--            background-image: url(images/Sergey\ Slepko_Mallows.jpg);-->
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form{
+            width: 500px;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 30px 40px;
+            border-radius: 10px;
+            color: rgba(57, 40, 88, 0.75);
+            font-weight: 800;
+        }
+
+        #paintings{
+            width: 100%;
+            padding: 30px 20px;
+            font-size: medium;
+            border: none;
+            border-radius: 4px;
+            background-color: rgba(57, 40, 88, 0.75);
+            color: #fff;
+            margin-bottom: 50px;
+            margin-top: 30px;
+        }
+
+        input[type=text]{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        input[type=submit]{
+            display: inline-block;
+            color: rgba(57, 40, 88, 0.75);
+            background: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 15px 40px;
+            border-radius: 4px;
+            margin-top: 30px;
+        }
+
+    </style>
+</head>
+
+<body id="gallery">
+
+<div class="hamburger-menu">
+    <img src="images/hamburger.png" class="menu-icon" onclick="showMenu();">
+    <ul id="menu_box">
+        <li><a class="menu_item" href="/">Home</a></li>
+        <li><a class="menu_item" href="gallery">Buy art</a></li>
+        <li><a class="menu_item" href="artists.html">Meet our artists</a></li>
+        <li><a class="menu_item" href="https://www.schack.org/" target="_blank">Schack art center</a></li>
+        <li><a class="menu_item" href="https://www.paypal.com/donate/?hosted_button_id=8YWWNAY4EL6MC" target="_blank">Donate to Ukraine</a></li>
+        <li><a class="menu_item" href="contact.html">Contact us</a></li>
+    </ul>
+</div>
+
+<table>
+    <tr th:each="painting: ${paintings}">
+        <th th:text="${painting.paintingName}"></th>
+        <th th:text="${painting.artistName}"></th>
+        <th th:text="${painting.price}"></th>
+    </tr>
+</table>
+
+<div class="container">
+    <div class="form">
+        <form action="mailto:viktoriia.nikitiuk@gov.ua">
+            <select id="paintings" name="paintings">
+                <option value="Choose the painting">Choose the painting</option>
+            </select>
+
+            <input type="submit">
+        </form>
+    </div>
+</div>
+
+</body>
+
+</html>

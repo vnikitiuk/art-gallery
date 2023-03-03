@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Art of Freedom</title>
+</head>
+<body>
+    <form th:object="${paintingForm}" th:action="@{/addpainting}" th:method="post">
+        <label for="paintingName">Painting name:</label><br>
+        <input type="text" th:field="*{paintingName}"><br>
+        <label for="artistName">Artist name:</label><br>
+        <input type="text" th:field="*{artistName}"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
