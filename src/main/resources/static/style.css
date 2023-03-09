@@ -115,3 +115,9 @@ html, body{
     text-decoration: none;
     transition-duration: .25s;
 }
+
+#add-painting {
+      margin: auto;
+      width: 50%;
+      padding: 20px;
+}

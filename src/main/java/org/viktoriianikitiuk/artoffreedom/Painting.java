@@ -1,14 +1,32 @@
 package org.viktoriianikitiuk.artoffreedom;
 
+import jakarta.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
+
+
+@Entity
+@Table
 public class Painting {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
+    @Column
     private String paintingName;
+    @Column
     private String artistName;
-//    private int price;
+
+    @Column
+    private String paintingImage;
+    private int price;
 
     public Painting() {
-        this.paintingName = paintingName;
-        this.artistName = artistName;
-//        this.price = price;
+    }
+
+    public Painting(String pN, String aN, String pI) {
+        this.paintingName = pN;
+        this.artistName = aN;
+        this.paintingImage = pI;
+        this.price = price;
     }
 
 
@@ -20,9 +38,13 @@ public class Painting {
         return this.paintingName;
     }
 
-//    public int getPrice(){
-//        return price;
-//    }
+    public String getPaintingImage() {
+        return paintingImage;
+    }
+
+    public int getPrice(){
+        return price;
+    }
 
     public void setPaintingName(String paintingName) {
         this.paintingName = paintingName;
@@ -32,8 +54,12 @@ public class Painting {
         this.artistName = artistName;
     }
 
-//    public void setPrice(int price) {
-//        this.price = price;
-//    }
+    public void setPaintingImage(String paintingImage) {
+        this.paintingImage = paintingImage;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
 }
