@@ -15,16 +15,15 @@
 <body>
     <div th:replace="fragments/navMenu :: nav-bar"></div>
 
-<div class="container">
-    <div class="form">
-
+<div class="gallery container full-height">
+    <div class="form full-height">
         <div id="carouselExampleDark" class="carousel carousel-dark slide">
             <div class="carousel-inner">
                 <div th:each="painting, p: ${paintings}" th:class="${p.index}!= 0  ? 'carousel-item':'carousel-item active'" data-bs-interval="10000">
                     <img th:src="@{${'/images/upload/' + painting.paintingImage}}" id="painting-image">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
+                        <h5 th:text="${painting.paintingName + ' - $' + painting.price}"></h5>
+                        <p th:text="${painting.artistName}"></p>
                     </div>
                 </div>
 
@@ -38,16 +37,6 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-
-
-<!--        <table>-->
-<!--            <tr th:each="painting: ${paintings}">-->
-<!--                <th><img th:src="@{${'images/upload/' + painting.paintingImage}}" style="max-width: 200px; max-height: 200px;"></th>-->
-<!--                <th th:text="${painting.paintingName}"></th>-->
-<!--                <th th:text="${painting.artistName}"></th>-->
-<!--                <th th:text="${painting.price}"></th>-->
-<!--            </tr>-->
-<!--        </table>-->
     </div>
 </div>
 
