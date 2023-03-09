@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Art of Freedom</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="/js/common.js"></script>
 </head>
 <body>
-<h1>Error occurred</h1>
-<div th:text="${msg}"></div>
 <div th:replace="fragments/navMenu :: nav-bar"></div>
+<div class="container-center">
+    <h1>Error occurred</h1>
+    <div th:text="${msg}"></div>
+</div>
 </body>
 </html>

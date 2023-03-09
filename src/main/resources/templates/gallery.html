@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Art of Freedom</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="js/common.js"></script>
+    <script src="/js/common.js"></script>
 </head>
 
 <body id="gallery">
@@ -16,7 +16,7 @@
     <div class="form">
         <table>
             <tr th:each="painting: ${paintings}">
-                <th><img th:src="@{${'images/upload/' + painting.paintingImage}}" style="max-width: 200px; max-height: 200px;"></th>
+                <th><img th:src="@{${'/images/upload/' + painting.paintingImage}}" style="max-width: 200px; max-height: 200px;"></th>
                 <th th:text="${painting.paintingName}"></th>
                 <th th:text="${painting.artistName}"></th>
                 <th th:text="${painting.price}"></th>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art of Freedom</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="/js/common.js"></script>
+</head>
+<body>
+    <div th:replace="fragments/navMenu :: nav-bar"></div>
+
+    <div class="container-center" th:if="${!existingPaintings.empty}">
+        <table id="admin-paintings" class="table table-bordered">
+            <tr>
+                <th>Painting</th>
+                <th>Name</th>
+                <th>Artist</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+            <tr th:each="painting: ${existingPaintings}">
+                <td><img th:src="@{${'/images/upload/' + painting.paintingImage}}" style="max-width: 200px; max-height: 200px;"></td>
+                <td th:text="${painting.paintingName}"></td>
+                <td th:text="${painting.artistName}"></td>
+                <td th:text="${painting.price}"></td>
+                <td>
+                    <a th:href="@{${'/admin/painting/' + painting.id}}" class="btn btn-secondary btn-sm admin-table-button">Edit</a>
+                    <form th:action="@{${'/admin/painting/' + painting.id}}" th:method="delete">
+                        <input type="submit" value="Delete" class="btn btn-secondary btn-sm admin-table-button">
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card p-3 bg-light container-center">
+        <h5>Add New Painting</h5>
+        <form th:object="${addPaintingForm}" th:action="@{/admin/painting}" th:method="post" enctype="multipart/form-data">
+
+            <div class="input-group mb-3">
+                <input th:field="*{paintingName}" type="text" class="form-control" placeholder="Painting Name" aria-label="Painting name" aria-describedby="basic-addon1" required>
+            </div>
+
+            <div class="input-group mb-3">
+                <input th:field="*{artistName}" type="text" class="form-control" placeholder="Artist Name" aria-label="Artist name" aria-describedby="basic-addon1" required>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input th:field="*{price}" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Price" required>
+                <span class="input-group-text">.00</span>
+            </div>
+
+            <div class="input-group mb-3">
+                <input type="file" name="image" accept="image/*" class="form-control" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" aria-label="Upload" required>
+            </div>
+
+            <input type="submit" value="Submit" class="btn btn-outline-secondary">
+
+
+        </form>
+    </div>
+
+</body>
+</html>

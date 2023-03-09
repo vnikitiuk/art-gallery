@@ -29,6 +29,9 @@ public class Painting {
         this.price = price;
     }
 
+    public Long getId() {
+        return id;
+    }
 
     public String getArtistName(){
         return this.artistName;
@@ -61,5 +64,4 @@ public class Painting {
     public void setPrice(int price) {
         this.price = price;
     }
-
 }
