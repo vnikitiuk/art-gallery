@@ -12,6 +12,8 @@
 <body>
     <div th:replace="fragments/navMenu :: nav-bar"></div>
 
+    <div th:replace="fragments/navMenu :: logout-button"></div>
+
     <div class="card p-3 bg-light container-center">
         <form th:object="${editPaintingForm}" th:action="@{${'/admin/painting/' + editPaintingForm.id}}" th:method="post" enctype="multipart/form-data">
 

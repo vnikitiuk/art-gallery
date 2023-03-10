@@ -145,3 +145,9 @@ html, body{
 .gallery .carousel {
     height: 70%;
 }
+
+.logout-button {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+}

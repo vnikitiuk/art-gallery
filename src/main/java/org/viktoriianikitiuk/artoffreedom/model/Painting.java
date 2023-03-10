@@ -1,4 +1,4 @@
-package org.viktoriianikitiuk.artoffreedom;
+package org.viktoriianikitiuk.artoffreedom.model;
 
 import jakarta.persistence.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,7 +22,7 @@ public class Painting {
     public Painting() {
     }
 
-    public Painting(String pN, String aN, String pI) {
+    public Painting(String pN, String aN, String pI, int price) {
         this.paintingName = pN;
         this.artistName = aN;
         this.paintingImage = pI;

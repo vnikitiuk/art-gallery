@@ -12,6 +12,8 @@
 <body>
     <div th:replace="fragments/navMenu :: nav-bar"></div>
 
+    <div th:replace="fragments/navMenu :: logout-button"></div>
+
     <div class="container-center" th:if="${!existingPaintings.empty}">
         <table id="admin-paintings" class="table table-bordered">
             <tr>
