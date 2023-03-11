@@ -1,19 +1,18 @@
 package org.viktoriianikitiuk.artoffreedom.controller;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
-import org.springframework.security.access.SecurityConfig;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.viktoriianikitiuk.artoffreedom.config.PasswordEncoderConfig;
 import org.viktoriianikitiuk.artoffreedom.config.WebSecurityConfig;
 import org.viktoriianikitiuk.artoffreedom.dao.PaintingRepository;
+import org.viktoriianikitiuk.artoffreedom.dao.UserRepository;
 import org.viktoriianikitiuk.artoffreedom.model.Painting;
+import org.viktoriianikitiuk.artoffreedom.service.RoleService;
+import org.viktoriianikitiuk.artoffreedom.service.UserService;
 
 import java.util.Arrays;
 
@@ -22,12 +21,21 @@ import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@Import(WebSecurityConfig.class)
+@Import({WebSecurityConfig.class, PasswordEncoderConfig.class})
 @WebMvcTest(GalleryController.class)
 class GalleryControllerTest {
 
     @MockBean
     PaintingRepository paintingRepository;
+
+    @MockBean
+    UserRepository userRepository;
+
+    @MockBean
+    RoleService roleService;
+
+    @MockBean
+    UserService userService;
 
     @Autowired
     private MockMvc mockMvc;

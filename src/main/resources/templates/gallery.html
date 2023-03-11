@@ -24,6 +24,7 @@
                     <div class="carousel-caption d-none d-md-block">
                         <h5 th:text="${painting.paintingName + ' - $' + painting.price}"></h5>
                         <p th:text="${painting.artistName}"></p>
+                        <a th:if="${loggedIn}" th:href="@{${'/buy/' + painting.id}}">Buy</a>
                     </div>
                 </div>
 

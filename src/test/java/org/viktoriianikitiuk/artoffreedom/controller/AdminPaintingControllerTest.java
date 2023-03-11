@@ -7,9 +7,13 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+import org.viktoriianikitiuk.artoffreedom.config.PasswordEncoderConfig;
 import org.viktoriianikitiuk.artoffreedom.config.WebSecurityConfig;
 import org.viktoriianikitiuk.artoffreedom.dao.PaintingRepository;
+import org.viktoriianikitiuk.artoffreedom.dao.UserRepository;
 import org.viktoriianikitiuk.artoffreedom.model.Painting;
+import org.viktoriianikitiuk.artoffreedom.service.RoleService;
+import org.viktoriianikitiuk.artoffreedom.service.UserService;
 
 import java.util.Arrays;
 
@@ -18,12 +22,21 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@Import(WebSecurityConfig.class)
+@Import({WebSecurityConfig.class, PasswordEncoderConfig.class})
 @WebMvcTest(AdminPaintingController.class)
 class AdminPaintingControllerTest {
 
     @MockBean
     PaintingRepository paintingRepository;
+
+    @MockBean
+    UserRepository userRepository;
+
+    @MockBean
+    RoleService roleService;
+
+    @MockBean
+    UserService userService;
 
     @Autowired
     private MockMvc mockMvc;

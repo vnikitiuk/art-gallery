@@ -23,7 +23,7 @@
         <div class="card p-3 bg-light container-center">
 
             <h5>Login</h5>
-            <form th:action="@{/login}" th:method="post" enctype="multipart/form-data">
+            <form th:action="@{/login}" th:method="post">
 
                 <div class="input-group mb-3">
                     <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required>
@@ -33,7 +33,8 @@
                     <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required>
                 </div>
 
-                <input type="submit" value="Submit" class="btn btn-outline-secondary">
+                <input type="submit" value="Login" class="btn btn-outline-secondary">
+                <a href="/register" class="btn btn-outline-secondary">Or register</a>
             </form>
         </div>
     </div>

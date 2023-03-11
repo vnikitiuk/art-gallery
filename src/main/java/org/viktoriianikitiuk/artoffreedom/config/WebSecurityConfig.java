@@ -3,15 +3,13 @@ package org.viktoriianikitiuk.artoffreedom.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.viktoriianikitiuk.artoffreedom.service.UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -19,16 +17,18 @@ public class WebSecurityConfig {
     public WebSecurityConfig() {
     }
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private PasswordEncoder encoder;
+
     @Bean
-    public UserDetailsService users() {
-        // The builder will ensure the passwords are encoded before saving in memory
-        User.UserBuilder users = User.withDefaultPasswordEncoder();
-        UserDetails admin = users
-                .username("admin")
-                .password("password")
-                .roles("USER", "ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(admin);
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+        auth.setUserDetailsService(userService); //set the custom user details service
+        auth.setPasswordEncoder(encoder); //set the password encoder - bcrypt
+        return auth;
     }
 
     @Bean
@@ -39,13 +39,14 @@ public class WebSecurityConfig {
                         .requestMatchers(new AntPathRequestMatcher("/js/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/style.css")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/gallery/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/register/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasAnyRole("ADMIN")
                         .anyRequest().authenticated()
             )
             .formLogin( form -> form
                     .loginPage("/login")
-                    .defaultSuccessUrl("/admin/painting")
+                    .defaultSuccessUrl("/")
                     .loginProcessingUrl("/login")
                     .permitAll()
             ).logout( logout -> logout

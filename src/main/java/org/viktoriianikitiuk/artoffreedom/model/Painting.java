@@ -17,6 +17,7 @@ public class Painting {
 
     @Column
     private String paintingImage;
+    @Column
     private int price;
 
     public Painting() {
