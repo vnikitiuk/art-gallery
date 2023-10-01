@@ -1,4 +1,4 @@
-# Art Manager
+# Art Gallery
 This is a site for an art gallery I built to simplify management of art exhibitions. In particular, I wanted to use it for the "Art of Freedom" exhibition in Everret, WA where I volunteered as a curator.
 
 This web site consist of two parts: user and admin interface.
